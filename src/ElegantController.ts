@@ -13,10 +13,6 @@ export class ElegantController<ModelInterface extends Document> {
     this.label = label;
   }
 
-  public test() {
-    console.log(this.model);
-  }
-
   /**
    * Make Pagination for Model
    * @param {req} Request
@@ -49,10 +45,10 @@ export class ElegantController<ModelInterface extends Document> {
    * @param {res} Response
    */
   public create = async (req: Request, res: Response): Promise<Response> => {
-    const { newModel } = req.body.newModel;
+    const { newModel } = req.body;
     try {
       const createdModel = await this.model.create(newModel);
-      return res.status(200).json({ message: "created", model: createdModel });
+      return res.status(200).json({ message: "created2", model: createdModel });
     } catch (error) {
       console.log(error);
       return res.json({ error });

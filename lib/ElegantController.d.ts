@@ -5,7 +5,6 @@ export declare class ElegantController<ModelInterface extends Document> {
     private label;
     protected paginationSelectedItems: object | undefined;
     constructor(model: Model<ModelInterface>, label: string);
-    test(): void;
     /**
      * Make Pagination for Model
      * @param {req} Request
