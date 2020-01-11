@@ -1,0 +1,16 @@
+{
+  "name": "elegant-ts",
+  "version": "1.0.0",
+  "main": "lib/index.js",
+  "types": "lib",
+  "scripts": {
+    "build": "tsc -p ."
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@types/express": "^4.17.2",
+    "@types/mongoose": "^5.5.41",
+    "express": "^4.17.1",
+    "mongoose": "^5.8.7"
+  }
+}
