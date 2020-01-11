@@ -4,5 +4,5 @@ declare const _default: {
     ElegantController: typeof ElegantController;
     ElegantRouter: typeof ElegantRouter;
 };
-export default _default;
+export = _default;
 //# sourceMappingURL=index.d.ts.map

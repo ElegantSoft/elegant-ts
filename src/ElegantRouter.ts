@@ -2,7 +2,14 @@ import { Router, RequestHandler } from "express";
 import { ElegantController } from "./ElegantController";
 import { Document } from "mongoose";
 
+enum methods {
+  get = "get",
+  post = "post",
+  put = "put",
+  delete = "delete"
+}
 interface RegisteredRoutes {
+  method: string;
   path: string;
   handlers: Array<RequestHandler>;
 }
@@ -18,7 +25,22 @@ class ElegantRouter<ModelInterface extends Document> {
     console.log(registeredRoutes);
     if (registeredRoutes) {
       registeredRoutes.forEach(rr => {
-        this.registerGet(rr.path, ...rr.handlers);
+        switch (rr.method) {
+          case methods.get:
+            this.registerGet(rr.path, ...rr.handlers);
+            break;
+          case methods.put:
+            this.registerPut(rr.path, ...rr.handlers);
+            break;
+          case methods.post:
+            this.registerPost(rr.path, ...rr.handlers);
+            break;
+          case methods.delete:
+            this.registerDelete(rr.path, ...rr.handlers);
+            break;
+          default:
+            break;
+        }
       });
     }
 
@@ -41,6 +63,27 @@ class ElegantRouter<ModelInterface extends Document> {
     ...handlers: Array<RequestHandler>
   ): void => {
     this.router.get(path, ...handlers);
+  };
+
+  private registerPost = (
+    path: string,
+    ...handlers: Array<RequestHandler>
+  ): void => {
+    this.router.post(path, ...handlers);
+  };
+
+  private registerPut = (
+    path: string,
+    ...handlers: Array<RequestHandler>
+  ): void => {
+    this.router.put(path, ...handlers);
+  };
+
+  private registerDelete = (
+    path: string,
+    ...handlers: Array<RequestHandler>
+  ): void => {
+    this.router.delete(path, ...handlers);
   };
 }
 
