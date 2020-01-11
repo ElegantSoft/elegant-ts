@@ -22,7 +22,6 @@ class ElegantRouter<ModelInterface extends Document> {
     registeredRoutes?: Array<RegisteredRoutes>
   ) {
     this.router = Router();
-    console.log(registeredRoutes);
     if (registeredRoutes) {
       registeredRoutes.forEach(rr => {
         switch (rr.method) {
