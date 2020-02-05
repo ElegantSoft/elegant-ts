@@ -28,7 +28,7 @@ export class ElegantController<ModelInterface extends Document> {
         {},
         page,
         limit,
-        { created_at: -1 },
+        { createdAt: -1 },
         [],
         this.paginationSelectedItems || {}
       );
