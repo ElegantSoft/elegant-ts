@@ -18,8 +18,7 @@ export class ElegantController<ModelInterface extends Document> {
    * @param {req} Request
    * @param {res} Response
    */
-
-  public paginate = async (req: Request, res: Response): Promise<Response> => {
+  public async paginate(req: Request, res: Response) {
     try {
       const limit: number = parseInt(req.query.limit) || 10;
       const page: number = parseInt(req.query.page) || 1;
@@ -37,14 +36,14 @@ export class ElegantController<ModelInterface extends Document> {
       console.log(error);
       return res.json({ error });
     }
-  };
+  }
 
   /**
    * Create new Model
    * @param {req} Request
    * @param {res} Response
    */
-  public create = async (req: Request, res: Response): Promise<Response> => {
+  public async create(req: Request, res: Response): Promise<Response> {
     const { newModel } = req.body;
     try {
       const createdModel = await this.model.create(newModel);
@@ -53,14 +52,14 @@ export class ElegantController<ModelInterface extends Document> {
       console.log(error);
       return res.json({ error });
     }
-  };
+  }
 
   /**
    * Edit Model
    * @param {req} Request
    * @param {res} Response
    */
-  public edit = async (req: Request, res: Response): Promise<Response> => {
+  public async edit(req: Request, res: Response): Promise<Response> {
     const { newModel } = req.body;
     try {
       const updatedModel = await this.model.findByIdAndUpdate(
@@ -74,14 +73,14 @@ export class ElegantController<ModelInterface extends Document> {
       console.log(err);
       return res.status(500).json({ err });
     }
-  };
+  }
 
   /**
    * show Model by Id
    * @param {req} Request
    * @param {res} Response
    */
-  public show = async (req: Request, res: Response) => {
+  public async show(req: Request, res: Response) {
     const { id } = req.params;
     try {
       const model = await this.model.findById(id);
@@ -89,14 +88,14 @@ export class ElegantController<ModelInterface extends Document> {
     } catch (error) {
       return res.status(404).json({ message: "not found" });
     }
-  };
+  }
 
   /**
    * remove Model by Id
    * @param {req} Request
    * @param {res} Response
    */
-  public remove = async (req: Request, res: Response) => {
+  public async remove(req: Request, res: Response) {
     const { id } = req.params;
     try {
       await this.model.findOneAndDelete(id);
@@ -104,17 +103,17 @@ export class ElegantController<ModelInterface extends Document> {
     } catch (error) {
       return res.status(404).json({ message: "not found" });
     }
-  };
+  }
 
-  public renderCreatePage = (req: Request, res: Response) => {
+  public renderCreatePage(req: Request, res: Response) {
     const title = "انشاء ";
     res.render(`admin/${this.label}/create`, { title });
-  };
-  public renderAdminIndex = (req: Request, res: Response) => {
+  }
+  public renderAdminIndex(req: Request, res: Response): void {
     const title = "الكل";
-    res.render(`admin/${this.label}/index`, { title });
-  };
-  public renderAdminEdit = async (req: Request, res: Response) => {
+    return res.render(`admin/${this.label}/index`, { title });
+  }
+  public async renderAdminEdit(req: Request, res: Response) {
     const { id } = req.params;
     const oldModel = await this.model.findById(id);
     const title = "تعديل";
@@ -122,7 +121,7 @@ export class ElegantController<ModelInterface extends Document> {
       title,
       oldModel: JSON.stringify(oldModel)
     });
-  };
+  }
 }
 
 export default ElegantController;
