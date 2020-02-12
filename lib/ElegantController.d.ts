@@ -10,34 +10,34 @@ export declare class ElegantController<ModelInterface extends Document> {
      * @param {req} Request
      * @param {res} Response
      */
-    paginate: (req: Request<import("express-serve-static-core").ParamsDictionary>, res: Response) => Promise<Response>;
+    paginate(req: Request, res: Response): Promise<Response>;
     /**
      * Create new Model
      * @param {req} Request
      * @param {res} Response
      */
-    create: (req: Request<import("express-serve-static-core").ParamsDictionary>, res: Response) => Promise<Response>;
+    create(req: Request, res: Response): Promise<Response>;
     /**
      * Edit Model
      * @param {req} Request
      * @param {res} Response
      */
-    edit: (req: Request<import("express-serve-static-core").ParamsDictionary>, res: Response) => Promise<Response>;
+    edit(req: Request, res: Response): Promise<Response>;
     /**
      * show Model by Id
      * @param {req} Request
      * @param {res} Response
      */
-    show: (req: Request<import("express-serve-static-core").ParamsDictionary>, res: Response) => Promise<Response>;
+    show(req: Request, res: Response): Promise<Response>;
     /**
      * remove Model by Id
      * @param {req} Request
      * @param {res} Response
      */
-    remove: (req: Request<import("express-serve-static-core").ParamsDictionary>, res: Response) => Promise<Response>;
-    renderCreatePage: (req: Request<import("express-serve-static-core").ParamsDictionary>, res: Response) => void;
-    renderAdminIndex: (req: Request<import("express-serve-static-core").ParamsDictionary>, res: Response) => void;
-    renderAdminEdit: (req: Request<import("express-serve-static-core").ParamsDictionary>, res: Response) => Promise<void>;
+    remove(req: Request, res: Response): Promise<Response>;
+    renderCreatePage(req: Request, res: Response): void;
+    renderAdminIndex(req: Request, res: Response): void;
+    renderAdminEdit(req: Request, res: Response): Promise<void>;
 }
 export default ElegantController;
 //# sourceMappingURL=ElegantController.d.ts.map
